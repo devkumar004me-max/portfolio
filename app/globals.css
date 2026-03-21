@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/assets/fonts/poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/assets/fonts/poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Kordix';
+    src: url('/assets/fonts/kordix.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Vilane';
+    src: url('/assets/fonts/vilane.woff2') format('woff2'),
+         url('/assets/fonts/vilane.woff') format('woff'),
+         url('/assets/fonts/Vilane.ttf') format('truetype'),
+         url('/assets/fonts/vilane.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Glonto';
+    src: url('/assets/fonts/glonto-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Polymath';
+    src: url('/assets/fonts/polymath.woff2') format('woff2'),
+         url('/assets/fonts/polymath.woff') format('woff'),
+         url('/assets/fonts/Polymath.ttf') format('truetype'),
+         url('/assets/fonts/polymath.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-gold: #ffffff;
+    --color-gray-light: #111111;
+    --color-gray-mid: #222222;
+    --color-gray-muted: #777777;
+
+    --font-display: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    --font-hero-name: 'Poppins', sans-serif;
+    --font-dev: 'Polymath', sans-serif;
+
+    --background: #050505;
+    --foreground: #ffffff;
+
+    --selection-bg: #ffffff;
+    --selection-text: #000000;
+
+    --radius-card: 24px;
+    --radius-pill: 100px;
+  }
+
+  ::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply font-body antialiased overflow-x-hidden w-full;
+  }
+
+  /* Grain Overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 9999;
+    animation: grain 8s steps(10) infinite;
+  }
+
+  @keyframes grain {
+    0%, 100% { transform:translate(0, 0); }
+    10% { transform:translate(-5%, -10%); }
+    20% { transform:translate(-15%, 5%); }
+    30% { transform:translate(7%, -25%); }
+    40% { transform:translate(-5%, 25%); }
+    50% { transform:translate(-15%, 10%); }
+    60% { transform:translate(15%, 0%); }
+    70% { transform:translate(0%, 15%); }
+    80% { transform:translate(3%, 35%); }
+    90% { transform:translate(-10%, 10%); }
+  }
+
+  /* Global Button Hover & Transitions */
+  button, a {
+    @apply duration-500 ease-out transition-all;
+  }
+}
+
+/* Utility for clean scrolling */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Hide Spline Watermark */
+#spline-watermark, 
+[class*="spline-watermark"],
+a[href*="spline.design"] {
+  display: none !important;
+}
