@@ -18,9 +18,10 @@ export default function Navbar() {
   ]
 
   const socialItems = [
-    { label: 'GitHub', link: 'https://github.com/dev' },
+    { label: 'GitHub', link: 'https://github.com/devkumar004me-max' },
     { label: 'YouTube', link: 'https://www.youtube.com/@devbuildsonly' },
-    { label: 'Instagram', link: 'https://instagram.com/deve.loper' },
+    { label: 'Instagram', link: 'https://www.instagram.com/deve.loperdev' },
+    { label: 'WhatsApp', link: 'https://wa.me/918825384415' },
   ]
 
   useEffect(() => {

@@ -58,9 +58,9 @@ export default function Home() {
           
           <div className="mt-16 flex gap-4">
              <MagneticButton>
-                <button className="px-10 py-4 rounded-full bg-white text-black font-glonto text-[0.75rem] uppercase tracking-widest hover:brightness-90 transition-all font-bold">
+                <a href="https://wa.me/918825384415" target="_blank" rel="noopener noreferrer" className="px-10 py-4 rounded-full bg-white text-black font-glonto text-[0.75rem] uppercase tracking-widest hover:brightness-90 transition-all font-bold block">
                     Contact Me
-                </button>
+                </a>
              </MagneticButton>
           </div>
         </div>
@@ -151,9 +151,10 @@ export default function Home() {
         <div className="flex flex-col md:flex-row gap-12 text-center md:text-left">
             <div className="flex flex-col gap-4">
                 <span className="font-glonto text-[0.8rem] text-white mb-2">Socials</span>
-                <a href="https://github.com/dev" className="font-glonto text-[0.7rem] text-white/40 uppercase hover:text-white transition-colors">GitHub</a>
-                <a href="https://www.youtube.com/@devbuildsonly" className="font-glonto text-[0.7rem] text-white/40 uppercase hover:text-white transition-colors">YouTube</a>
-                <a href="https://instagram.com/deve.loper" className="font-glonto text-[0.7rem] text-white/40 uppercase hover:text-white transition-colors">Instagram</a>
+                <a href="https://github.com/devkumar004me-max" target="_blank" rel="noreferrer" className="font-glonto text-[0.7rem] text-white/40 uppercase hover:text-white transition-colors">GitHub</a>
+                <a href="https://www.youtube.com/@devbuildsonly" target="_blank" rel="noreferrer" className="font-glonto text-[0.7rem] text-white/40 uppercase hover:text-white transition-colors">YouTube</a>
+                <a href="https://www.instagram.com/deve.loperdev" target="_blank" rel="noreferrer" className="font-glonto text-[0.7rem] text-white/40 uppercase hover:text-white transition-colors">Instagram</a>
+                <a href="https://wa.me/918825384415" target="_blank" rel="noreferrer" className="font-glonto text-[0.7rem] text-white/40 uppercase hover:text-white transition-colors">WhatsApp</a>
             </div>
             <div className="flex flex-col gap-4">
                 <span className="font-glonto text-[0.8rem] text-white mb-2">Inquiry</span>

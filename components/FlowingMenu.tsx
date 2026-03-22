@@ -161,10 +161,10 @@ const MenuItem: React.FC<MenuItemProps> = ({
 
 export const FlowingMenu: React.FC<FlowingMenuProps> = ({
   items = [
-    { link: 'https://github.com/dev', text: 'GitHub', image: '/images/v1.png' },
-    { link: 'https://youtube.com/dev', text: 'YouTube', image: '/images/v2.png' },
-    { link: 'https://instagram.com/dev', text: 'Instagram', image: '/images/v3.png' },
-    { link: 'https://facebook.com/dev', text: 'Facebook', image: '/images/v4.png' },
+    { link: 'https://github.com/devkumar004me-max', text: 'GitHub', image: '/images/v1.png' },
+    { link: 'https://www.youtube.com/@devbuildsonly', text: 'YouTube', image: '/images/v2.png' },
+    { link: 'https://www.instagram.com/deve.loperdev', text: 'Instagram', image: '/images/v3.png' },
+    { link: 'https://wa.me/918825384415', text: 'WhatsApp', image: '/images/v4.png' },
   ],
   speed = 10,
   textColor = '#ffffff',
