@@ -47,12 +47,12 @@ export default function Home() {
           </ScrollReveal>
           <div className="flex flex-col items-end">
                 <ScrollReveal delay={0.6}>
-                  <div className="font-display text-[7rem] lg:text-[10rem] text-white leading-[0.8] mb-2 drop-shadow-2xl">
+                  <div className="font-display text-[clamp(6rem,12vw,14rem)] bg-clip-text text-transparent bg-gradient-to-b from-white to-white/30 leading-[0.8] mb-4 drop-shadow-2xl tracking-tighter">
                       Dev
                   </div>
                 </ScrollReveal>
                 <ScrollReveal delay={0.7}>
-                  <span className="font-glonto text-[0.8rem] text-white/30 tracking-[0.3em] uppercase">Visual Designer & Developer</span>
+                  <span className="font-glonto text-[clamp(0.7rem,1vw,0.85rem)] text-white/20 tracking-[0.4em] uppercase">Visual Designer & Developer</span>
                 </ScrollReveal>
             </div>
           

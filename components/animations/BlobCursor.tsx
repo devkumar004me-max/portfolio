@@ -1,131 +1,51 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 
-export interface BlobCursorProps {
-  blobType?: 'circle' | 'square';
-  fillColor?: string;
-  trailCount?: number;
-  sizes?: number[];
-  innerSizes?: number[];
-  innerColor?: string;
-  opacities?: number[];
-  shadowColor?: string;
-  shadowBlur?: number;
-  shadowOffsetX?: number;
-  shadowOffsetY?: number;
-  filterId?: string;
-  filterStdDeviation?: number;
-  filterColorMatrixValues?: string;
-  useFilter?: boolean;
-  fastDuration?: number;
-  slowDuration?: number;
-  fastEase?: string;
-  slowEase?: string;
-  zIndex?: number;
-}
-
-export default function BlobCursor({
-  blobType = 'circle',
-  fillColor = '#ffffff',
-  trailCount = 3,
-  sizes = [20, 40, 30],
-  innerSizes = [4, 8, 6],
-  innerColor = 'rgba(255,255,255,0.4)',
-  opacities = [0.8, 0.4, 0.2],
-  shadowColor = 'rgba(255,255,255,0.1)',
-  shadowBlur = 10,
-  shadowOffsetX = 0,
-  shadowOffsetY = 0,
-  filterId = 'blob',
-  filterStdDeviation = 15,
-  filterColorMatrixValues = '1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 25 -10',
-  useFilter = true,
-  fastDuration = 0.15,
-  slowDuration = 0.4,
-  fastEase = 'power2.out',
-  slowEase = 'power1.out',
-  zIndex = 1000
-}: BlobCursorProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const blobsRef = useRef<(HTMLDivElement | null)[]>([]);
+export default function BlobCursor() {
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    const handleGlobalMove = (e: MouseEvent | TouchEvent) => {
-      const x = 'clientX' in e ? e.clientX : e.touches[0].clientX;
-      const y = 'clientY' in e ? e.clientY : e.touches[0].clientY;
+    const cursor = cursorRef.current;
+    if (!cursor) return;
 
-      blobsRef.current.forEach((el, i) => {
-        if (!el) return;
-        const isLead = i === 0;
-        gsap.to(el, {
-          x: x,
-          y: y,
-          duration: isLead ? fastDuration : slowDuration,
-          ease: isLead ? fastEase : slowEase
-        });
+    const onMouseMove = (e: MouseEvent) => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.2,
+        ease: 'power2.out'
       });
     };
 
-    window.addEventListener('mousemove', handleGlobalMove);
-    window.addEventListener('touchmove', handleGlobalMove);
-    
+    const onMouseEnter = () => setIsHovering(true);
+    const onMouseLeave = () => setIsHovering(false);
+
+    window.addEventListener('mousemove', onMouseMove);
+
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"]');
+    interactiveElements.forEach((el) => {
+      el.addEventListener('mouseenter', onMouseEnter);
+      el.addEventListener('mouseleave', onMouseLeave);
+    });
+
     return () => {
-      window.removeEventListener('mousemove', handleGlobalMove);
-      window.removeEventListener('touchmove', handleGlobalMove);
+      window.removeEventListener('mousemove', onMouseMove);
+      interactiveElements.forEach((el) => {
+        el.removeEventListener('mouseenter', onMouseEnter);
+        el.removeEventListener('mouseleave', onMouseLeave);
+      });
     };
-  }, [fastDuration, slowDuration, fastEase, slowEase]);
+  }, []);
 
   return (
     <div
-      ref={containerRef}
-      className="fixed inset-0 pointer-events-none"
-      style={{ zIndex }}
-    >
-      {useFilter && (
-        <svg className="absolute w-0 h-0">
-          <filter id={filterId}>
-            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation={filterStdDeviation} />
-            <feColorMatrix in="blur" values={filterColorMatrixValues} />
-          </filter>
-        </svg>
-      )}
-
-      <div
-        className="pointer-events-none absolute inset-0 overflow-hidden select-none"
-        style={{ filter: useFilter ? `url(#${filterId})` : undefined }}
-      >
-        {Array.from({ length: trailCount }).map((_, i) => (
-          <div
-            key={i}
-            ref={el => {
-              blobsRef.current[i] = el;
-            }}
-            className="absolute left-0 top-0 will-change-transform transform -translate-x-1/2 -translate-y-1/2"
-            style={{
-              width: sizes[i],
-              height: sizes[i],
-              borderRadius: blobType === 'circle' ? '50%' : '0',
-              backgroundColor: fillColor,
-              opacity: opacities[i],
-              boxShadow: `${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px 0 ${shadowColor}`
-            }}
-          >
-            <div
-              className="absolute"
-              style={{
-                width: innerSizes[i],
-                height: innerSizes[i],
-                top: (sizes[i] - innerSizes[i]) / 2,
-                left: (sizes[i] - innerSizes[i]) / 2,
-                backgroundColor: innerColor,
-                borderRadius: blobType === 'circle' ? '50%' : '0'
-              }}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
+      ref={cursorRef}
+      className={`fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white mix-blend-difference transition-transform duration-300 ease-out hidden md:block ${
+        isHovering ? 'scale-[2.5] bg-white' : 'scale-100 bg-transparent'
+      }`}
+    />
   );
 }

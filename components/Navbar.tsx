@@ -35,7 +35,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 w-full z-[100] px-8 py-6">
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between bg-black/40 backdrop-blur-2xl border border-white/10 rounded-2xl px-8 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between bg-black/40 backdrop-blur-3xl border-[0.5px] border-white/10 rounded-3xl px-8 py-4 shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
           
           {/* Logo */}
           <Link href="/" className="font-display text-2xl tracking-tighter text-white hover:opacity-70 transition-opacity">
