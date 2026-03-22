@@ -143,3 +143,8 @@
 a[href*="spline.design"] {
   display: none !important;
 }
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
